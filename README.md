@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Carsharing admin panel
+Link to gh-pages https://pletnevama.github.io/carsharingAdmin/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

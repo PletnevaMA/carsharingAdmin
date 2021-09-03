@@ -1,0 +1,111 @@
+@import "../../../mixins.scss";
+@import "../../../variable.scss";
+
+.header {
+  position: fixed;
+  top: 0;
+  box-shadow: $shadow;
+  background-color: #fff;
+  height: 68px;
+  &__list {
+    min-width: 100vw;
+    height: 67px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  &__item {
+    &__shape {
+      width: min-content;
+      position: relative;
+      height: 67px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60%;
+      border-right: 1px solid #cacedb;
+      padding-left: 25px;
+      &__input {
+        width: 100%;
+        background-color: transparent;
+        border: 0;
+        padding-left: 9px;
+        padding-right: 9px;
+        font-size: 13px;
+        &:active,
+        &:focus,
+        &:hover {
+          outline: 0;
+          outline-offset: 0;
+        }
+      }
+    }
+    &__notification {
+      width: min-content;
+      position: relative;
+      height: 67px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      border-right: 1px solid #cacedb;
+    }
+    &__avatar {
+      width: min-content;
+      position: relative;
+      height: 67px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 5px;
+      width: 15%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      &__logo {
+        border-radius: 50%;
+      }
+      &__name {
+        display: flex;
+        color: $textColor;
+        font-size: 15px;
+        padding-left: 10px;
+        padding-right: 5px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    &__item {
+      &__shape {
+        width: 60%;
+      }
+      &__notification {
+        width: 50px;
+      }
+      &__avatar {
+        width: 90px;
+       
+      }
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .header {
+    min-width: 100%;
+
+    &__button {
+      display: none;
+    }
+    &__list {
+      // padding-left: 285px;
+      min-width: 100%;
+      justify-content: flex-end;
+    }
+  }
+}

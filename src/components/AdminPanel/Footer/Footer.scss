@@ -1,0 +1,55 @@
+@import "../../../mixins.scss";
+@import "../../../variable.scss";
+
+.footer {
+  box-shadow: $shadow;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  z-index: 5;
+  width: 100%;
+  padding: 0 0 0 285px;
+  &__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  &__list {
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    width: 65%;
+  }
+  &__item {
+    list-style-type: none;
+    width: 130px;
+    &__link {
+        font-size: 13px;
+        text-decoration: none;
+        color: $buttonColor;
+        font-family: $font;
+        background-color: transparent;
+        cursor: pointer;
+      }
+  }
+  &__copyright {
+    font-size: 12px;
+    color: $textColor;
+  }  
+}
+
+@media (max-width: $mobile) {
+  .footer {
+    height: 100px;
+    padding: 0 ;
+    &__container {
+      height: 68px;
+      height: 100%;
+      display: flex;
+    }
+  
+  }
+}
+
+

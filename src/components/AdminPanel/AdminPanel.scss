@@ -1,0 +1,7 @@
+@import '../../variable.scss';
+
+@media (max-width: $mobile) {
+   .adminpanel{
+    width: 100vw;
+   } 
+}

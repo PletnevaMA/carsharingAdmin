@@ -1,0 +1,63 @@
+@import "../../../variable.scss";
+.order__line {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  &__container {
+    display: flex;
+    flex-direction: row;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font: $font;
+   
+  }
+  &__column {
+    flex-direction: column;
+  }
+  &__price {
+    font-size: 18px;
+    margin-bottom: 8px;
+    width: 150px;
+    text-align: center;
+    font-family: $font;  
+  }
+
+  &__car {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    color: #889098;
+    width: 250px;
+    &__place {
+      span {
+        color: black;
+      }
+    }
+    &__date {
+      span {
+        color: black;
+      }
+    }
+
+    &__color {
+      span {
+        color: black;
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile){
+  .order__line{
+    &__container{
+      display:block;
+    }
+    &__item{
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}

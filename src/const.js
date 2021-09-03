@@ -2,4 +2,11 @@ const Action = {
   LOGIN_USER: "loginUser",
 };
 
-export { Action };
+const Path = {
+  MAIN : '/',
+  ORDERS: '/orders',
+  CAR: '/car',
+  CARLIST: '/carlist'
+}
+
+export { Action, Path };

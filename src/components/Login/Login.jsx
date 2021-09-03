@@ -4,7 +4,7 @@ import "./Login.scss";
 import logoIcon from "../../icons/LogoIcon.svg";
 import {Link} from "react-router-dom";
 
-export const Login = () => {
+const Login = () => {
   return (
     <section className="login">
       <div className="login__box">
@@ -35,3 +35,4 @@ export const Login = () => {
     </section>
   );
 };
+export default Login;

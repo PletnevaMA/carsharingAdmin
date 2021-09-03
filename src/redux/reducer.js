@@ -1,7 +1,7 @@
 import {Action} from '../const';
 
 const initalState = {
-    isAutoresUser: false
+    isAutoresUser: true
 }
 
 export default (state = initalState, action) => {

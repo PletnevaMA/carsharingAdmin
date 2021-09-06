@@ -1,0 +1,22 @@
+@import "../../variable.scss";
+.button{
+  &-standart {
+  font-family: $font;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  border-radius: 5px;
+  padding: 0 37px 3px 37px;
+  cursor: pointer;
+  height: 30px;
+  background-color: $buttonColor;  
+  }
+  &-link{
+    font-family: $font;
+    font-size: 13px;
+    color: $buttonColor;    
+    background-color: transparent;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,58 @@
+@import "../../mixins.scss";
+@import "../../variable.scss";
+
+.orders {
+  overflow: scroll;
+  min-height: 100vh;
+  padding: 0 0 67px 0;
+  &__container {
+    padding: 100px 0 0 0;
+  }
+
+  &__title {
+    padding-left: 15px;
+    font-size: 20px;
+    font-weight: 400;
+    color: $textColor;
+    margin-bottom: 15px;
+  }
+  &__block {
+    background-color: #fff;
+    box-shadow: $shadow;
+    display: flex;
+    flex-direction: column;
+    border-radius: 9px;
+    margin-top: 40px;
+  }
+ 
+  &__line {
+    padding: 0 22px 14px 22px;
+    font-size: 12px;
+    flex: 1 1 100%;
+    border-bottom: 1px solid #e0e2e8;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .orders {
+    width: 100vw;
+    height: 100vh;
+    &__container {
+    }
+    &__title {
+      padding-left: 0;
+    }
+    &__main {
+      font-size: 15px;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .orders {
+    &__container {
+      padding: 100px 32px 100px 317px;
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@import "../../../variable.scss";
+
+.selections {
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
+  border-bottom: 1px solid #e0e2e8;
+  position: relative;
+  margin-right: 200px;
+  &__list {
+    display: flex;
+    justify-content: flex-start;
+  }
+  &__item {
+    position: relative;
+    display: flex;
+    padding: 7px 14px;
+    width: 110px;
+    border-radius: 5px;
+    border: 1px solid #becad6;
+    font-size: 12px;
+    margin-bottom: 12px;
+    color: #999;
+    &::after,
+    &::before {
+      right: 6px;
+      content: "";
+      position: absolute;
+      width: 1px;
+      border-right: 5px solid transparent;
+      border-left: 5px solid transparent;     
+    }
+    &::after {
+      top: 8px;
+      border-bottom: 5px solid #000;
+    }
+    &::before {
+      bottom: 8px;
+      border-top: 5px solid #000;
+    }
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+  &__button {
+    font-family: $font;
+    align-content: center;
+    color: #fff;
+    border-radius: 5px;
+    padding: 0 20px 3px 20px;
+    font-size: 11px;
+    cursor: pointer;
+    height: 30px;
+    background-color: $buttonColor;
+    transition: 0.2s all ease-in-out;   
+    &__container {
+        margin-top: 16px;
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .selections{
+    display: block;
+    &__list{
+      display: block;
+      width: 90%;
+      padding:0;
+    }
+    &__item{
+      width: 90%;
+      margin-left: 20px;
+    }
+    &__button{
+      width: 90%;
+      margin-left: 20px;
+    }
+  }
+}

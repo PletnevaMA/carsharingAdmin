@@ -1,27 +1,25 @@
 import React from "react";
-import tank from "../../../icons/tank.svg";
-import baby from "../../../icons/baby-chair.svg";
-import hand from "../../../icons/rigth-hand.svg";
 import "./CheckOrder.scss";
 
-export const CheckOrder = () => {
+export const CheckOrder = ({tank, baby, drive}) => {
+
   return (
     <div className="checkbox">
       <div className="checkbox__item">
-        <input type="checkbox" className="checkbox__input" id="tank" checked />
+        <input type="checkbox" className= 'checkbox__input' id="tank" checked = {tank} />
         <label htmlFor="tank" className="checkbox__label">
           <span>Полный бак</span>
         </label>
       </div>
       <div className="checkbox__item">
-        <input type="checkbox" className="checkbox__input" id="baby" />
+        <input type="checkbox" className="checkbox__input" id="baby" checked = {baby}/>
         <label htmlFor="baby" className="checkbox__label">
          
           <span>Детское кресло</span>
         </label>
       </div>
       <div className="checkbox__item">
-        <input type="checkbox" className="checkbox__input" id="drive" />
+        <input type="checkbox" className="checkbox__input" id="drive" checked = {drive} />
         <label htmlFor="drive" className="checkbox__label">
           <span>Правый руль</span>
         </label>

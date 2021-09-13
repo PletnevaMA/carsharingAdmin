@@ -1,0 +1,42 @@
+
+@import "../../../variable.scss";
+
+.buttons {
+    display: flex;
+    align-items: center;
+  &__list {
+    display: flex;
+    border-radius: 5px;
+    height: 24px;
+    border: 1px solid $gray;
+    border-radius: 5px;
+    padding-inline-start: 0px;
+   
+  }
+  &__item {
+    cursor: pointer;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    position: relative;
+    text-decoration: none;
+    color: black;
+   
+  }
+  &__item:not(:last-child) {
+    border-right: 1px solid $gray;
+  }
+  
+}
+
+@media (max-width: $mobile) {
+  .buttons{
+    &__item{
+      width: 32%
+    }
+  }
+}
+
+

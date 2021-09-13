@@ -1,0 +1,9 @@
+@import '../../../variable.scss';
+.table{
+    background-color: #fff;
+    box-shadow: $shadow;
+    display: flex;
+    flex-direction: column;
+    border-radius: 9px;
+    margin-top: 40px;
+}

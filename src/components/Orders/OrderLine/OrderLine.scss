@@ -40,7 +40,9 @@
         color: black;
       }
     }
-
+    &__image{
+      object-fit: cover;
+    }
     &__color {
       span {
         color: black;

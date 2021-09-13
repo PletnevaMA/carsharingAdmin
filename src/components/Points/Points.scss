@@ -1,0 +1,11 @@
+@import "../../variable.scss";
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.options {
+  border-bottom: 1px solid $gray;
+  display: flex;
+  justify-content: space-between;
+}

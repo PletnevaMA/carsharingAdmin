@@ -1,0 +1,20 @@
+@import "../../../variable.scss";
+
+.order__line {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  &__container {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid $ligth-gray;
+    padding-left: 0;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font: $font;
+    padding-top: 15px;
+    padding-bottom: 30px;    
+  }
+}

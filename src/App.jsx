@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
-import  Login  from "./components/Login/Login";
-import AdminPanel from './components/AdminPanel/AdminPanel';
-import './styles.scss';
+
+import React from "react";
+import "./styles.scss";
+import Main from "./components/Main";
 
 const App = () => {
-  const { isAutoresUser } = useSelector((state) => state.isAutoresUser);
-  console.log(isAutoresUser);
-    return <AdminPanel />;
-}
+  return(<div>
+    <Main />
+  </div> );
+};
 export default App;

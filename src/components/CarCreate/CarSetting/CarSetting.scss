@@ -1,0 +1,70 @@
+@import "../../../variable.scss";
+.car-setting {
+  display: flex;
+  flex: auto;
+  &__block {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: $shadow;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 20px 20px;
+    min-height: 80%;
+  }
+  &__title {
+    color: $textColor;
+    margin-bottom: 40px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  &__setting {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 40px;
+    margin-left: 40px;
+    &-container {
+      margin-left: 20px;
+      display: flex;
+     
+      width: 100px;
+    }
+    &__add {
+      display: none;
+      background-color: transparent;
+      display: block;
+      height: 26px;
+      width: 26px;
+      border-radius: 4px;
+      border: 1px solid $inputColor !important;
+      position: relative;
+      &::after,
+      &::before {
+        transition: 0.2s all ease-in-out;
+        content: "";
+        position: absolute;
+        background-color: $inputColor;
+      }
+      &::after {
+        bottom: 20%;
+        right: 45%;
+        width: 2px;
+        height: 14px;
+      }
+      &::before {
+        bottom: 45%;
+        right: 20%;
+        width: 14px;
+        height: 2px;
+      }     
+    }
+  }
+}

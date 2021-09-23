@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/carsharingAdmin/static/css/main.35e6a4e8.chunk.css",
-    "main.js": "/carsharingAdmin/static/js/main.4ca6882d.chunk.js",
-    "main.js.map": "/carsharingAdmin/static/js/main.4ca6882d.chunk.js.map",
+    "main.css": "/carsharingAdmin/static/css/main.8f683b39.chunk.css",
+    "main.js": "/carsharingAdmin/static/js/main.420ec7f8.chunk.js",
+    "main.js.map": "/carsharingAdmin/static/js/main.420ec7f8.chunk.js.map",
     "runtime-main.js": "/carsharingAdmin/static/js/runtime-main.ac0ecb20.js",
     "runtime-main.js.map": "/carsharingAdmin/static/js/runtime-main.ac0ecb20.js.map",
     "static/css/2.3a30ecb3.chunk.css": "/carsharingAdmin/static/css/2.3a30ecb3.chunk.css",
-    "static/js/2.1a0079ac.chunk.js": "/carsharingAdmin/static/js/2.1a0079ac.chunk.js",
-    "static/js/2.1a0079ac.chunk.js.map": "/carsharingAdmin/static/js/2.1a0079ac.chunk.js.map",
+    "static/js/2.5c721d96.chunk.js": "/carsharingAdmin/static/js/2.5c721d96.chunk.js",
+    "static/js/2.5c721d96.chunk.js.map": "/carsharingAdmin/static/js/2.5c721d96.chunk.js.map",
     "index.html": "/carsharingAdmin/index.html",
     "static/css/2.3a30ecb3.chunk.css.map": "/carsharingAdmin/static/css/2.3a30ecb3.chunk.css.map",
-    "static/css/main.35e6a4e8.chunk.css.map": "/carsharingAdmin/static/css/main.35e6a4e8.chunk.css.map",
-    "static/js/2.1a0079ac.chunk.js.LICENSE.txt": "/carsharingAdmin/static/js/2.1a0079ac.chunk.js.LICENSE.txt",
+    "static/css/main.8f683b39.chunk.css.map": "/carsharingAdmin/static/css/main.8f683b39.chunk.css.map",
+    "static/js/2.5c721d96.chunk.js.LICENSE.txt": "/carsharingAdmin/static/js/2.5c721d96.chunk.js.LICENSE.txt",
     "static/media/styles.scss": "/carsharingAdmin/static/media/HelveticaRegular.31a272d7.ttf",
     "static/media/LogoIcon.bc4f3ee8.svg": "/carsharingAdmin/static/media/LogoIcon.bc4f3ee8.svg",
     "static/media/Notifications.4a73f89d.svg": "/carsharingAdmin/static/media/Notifications.4a73f89d.svg",
@@ -28,8 +28,8 @@
   "entrypoints": [
     "static/js/runtime-main.ac0ecb20.js",
     "static/css/2.3a30ecb3.chunk.css",
-    "static/js/2.1a0079ac.chunk.js",
-    "static/css/main.35e6a4e8.chunk.css",
-    "static/js/main.4ca6882d.chunk.js"
+    "static/js/2.5c721d96.chunk.js",
+    "static/css/main.8f683b39.chunk.css",
+    "static/js/main.420ec7f8.chunk.js"
   ]
 }

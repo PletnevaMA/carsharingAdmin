@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState} from "react";
 import "./CarSetting.scss";
+import { emptyObject } from "../../../redux/consts";
 import Input from "../../Global/Input/Input";
 import SelectEntity from "../../Global/Select/Select";
 import { useSelector } from "react-redux";
@@ -75,33 +76,9 @@ const CarSetting = () => {
   }, [id]);
 
   const cancelCarHandler = useCallback(() => {
-    dispatch(
-      createCar({
-        id: "",
-        priceMax: 0,
-        priceMin: 0,
-        name: "",
-        thumbnail: {
-          size: 0,
-          originalname: "",
-          mimetype: "",
-          path: "",
-        },
-        description: "",
-        categoryId: {
-          name: "",
-          description: "",
-          id: "",
-        },
-        colors: [],
-      })
-    );
+    dispatch(createCar(emptyObject.emptyCar));
   });
 
-  let categoryIdName;
-  newCar.categoryId !== null
-    ? (categoryIdName = newCar.categoryId.id)
-    : (categoryIdName = "");
   return (
     <div className="car-setting">
       <div className="car-setting__block">
@@ -114,7 +91,7 @@ const CarSetting = () => {
               onChange={editNameHandler}
             />
             <SelectEntity
-              value={categoryIdName}
+              value={newCar.categoryId ? newCar.categoryId.id: ""}
               label="Тип автомобиля"
               onChange={editCategoryCar}
               list="category"

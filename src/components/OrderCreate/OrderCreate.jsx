@@ -3,66 +3,59 @@ import { EntityContainer } from "../Global/EntityContainer/EntityContainer";
 import Title from "../Global/Title/Title";
 import "./OrderCreate.scss";
 import Input from "../Global/Input/Input";
+import SelectEntity from "../Global/Select/Select";
 import ButtonCard from "../Global/ButtonCard/ButtonCard";
+import CheckOrder from "../Orders/CheckOrder/CheckOrder";
 import { useSelector, useDispatch } from "react-redux";
 import { getCities } from "../../redux/actions/cities";
 import { getPoints } from "../../redux/actions/points";
 import { getRates } from "../../redux/actions/rates";
-import { getCars} from '../../redux/actions/cars';
-import {editPrice, editCar, editCity, editDateFrom, editDateTo, editRate, changeOrder, createOrder, deleteOrder} from '../../redux/actions/orders';
+import { getCars } from "../../redux/actions/cars";
+import {
+  editPrice,
+  editCar,
+  editStatus,
+  editCity,
+  editDateFrom,
+  editDateTo,
+  editRate,
+  changeOrder,
+  createOrder,
+  deleteOrder,
+  editPoint,
+  getOrdersStatus,
+} from "../../redux/actions/orders";
 import DateTimePicker from "react-datetime-picker";
 import { Path } from "../../const";
 const OrderCreate = () => {
-  const { newOrder } = useSelector((state) => state.orders);
-  const {cars} = useSelector((state) => state.cars);
+  const { newOrder, orderStatus } = useSelector((state) => state.orders);
+  const { cars } = useSelector((state) => state.cars);
   const { cities } = useSelector((state) => state.cities);
   const { points } = useSelector((state) => state.points);
   const { rates } = useSelector((state) => state.rates);
-  const [dateFromValue, setDateFrom] = useState(new Date());
-  const [dateToValue, setDateTo] = useState(new Date());
-  const {car, city, id} = newOrder;
+  const [dateFromValue, setDateFrom] = useState(new Date(newOrder.dateFrom));
+  const [dateToValue, setDateTo] = useState(new Date(newOrder.dateTo));
+  const { id, price } = newOrder;
 
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getCars());
     dispatch(getCities());
     dispatch(getPoints());
     dispatch(getRates());
-    dispatch(getCars());
-   
-  }, [newOrder]);
+    dispatch(getOrdersStatus());
+  }, []);
 
   useEffect(() => {
-    console.log(new Date(dateFromValue).getTime())
-    dispatch(editDateFrom(new Date(dateFromValue).getTime()))
-    dispatch(editDateTo(new Date(dateToValue).getTime()))
-  }, [dateFromValue, dateToValue])
-
-  const editCarHandler = useCallback(
-    (e) => {
-      return dispatch(editCar(e.target.value));
-    },
-    [car]
-  );
-
-  const editCityHandler = useCallback(
-    (e) => {
-      return dispatch(editCity(e.target.value));
-    },
-    [city]
-  );
+    dispatch(editDateFrom(new Date(dateFromValue).getTime()));
+    dispatch(editDateTo(new Date(dateToValue).getTime()));
+  }, [newOrder.dateFrom, newOrder.dateTo]);
 
   const editPriceHandler = useCallback(
     (e) => {
       return dispatch(editPrice(e.target.value));
     },
-    [city]
-  );
-
-  const editRateHandler = useCallback(
-    (e) => {
-      return dispatch(editRate(e.target.value));
-    },
-    [city]
+    [price]
   );
 
   const changeOrderHandler = useCallback(() => {
@@ -70,12 +63,69 @@ const OrderCreate = () => {
   }, [newOrder, id]);
 
   const cancelOrderHandler = useCallback(() => {
-    dispatch(createOrder(newOrder));
+    dispatch(
+      createOrder({
+        orderStatusId: {
+          id: "",
+          name: "",
+        },
+        cityId: {
+          id: "",
+          name: "",
+        },
+        pointId: {
+          id: "",
+          cityId: "",
+          address: "",
+          name: "",
+        },
+        carId: {
+          id: "",
+          name: "",
+          priceMin: 0,
+          priceMax: 0,
+          description: "",
+          colors: [],
+          thumbnail: {
+            path: "",
+            size: 0,
+            mimetype: "",
+            originalname: "",
+          },
+          categoryId: {
+            id: "",
+            name: "",
+          },
+        },
+        color: "",
+        dateFrom: new Date(),
+        dateTo: new Date(),
+        rateId: {
+          rateTypeId: {
+            id: "",
+            name: "",
+          },
+        },
+        price: 0,
+        isFullTank: false,
+        isNeedChildChair: false,
+        isRightWheel: false,
+      })
+    );
   }, [newOrder]);
 
   const deleteOrderHandler = useCallback(() => {
     dispatch(deleteOrder(id));
-  }, [ id]);
+  }, [id]);
+
+  let newPoints = [];
+  points.map((el) => {
+    let cityPoint= newOrder.cityId ? newOrder.cityId.id : "";
+    if (el.cityId.id === cityPoint) {
+      newPoints.push(el);
+    }
+  });
+
   return (
     <EntityContainer>
       <Title>Карточка заказа</Title>
@@ -85,75 +135,83 @@ const OrderCreate = () => {
             <div className="car-setting__container">
               <span className="car-setting__title">Настройка заказа</span>
               <div className="car-setting__setting">
-                <Input
-                  key={Math.random(0, 1)}
-                  value={newOrder.carId ? newOrder.carId.name : ""}
+                <SelectEntity
+                  value={newOrder.carId ? newOrder.carId.id : ""}
                   label="Машина"
-                  arr = {cars}
-                  list = "cars"
-                  onChange={editCarHandler}
+                  objectsList={cars}
+                  list="cars"
+                  onChange={editCar}
+                />
+                <SelectEntity
+                  value={
+                    newOrder.orderStatusId ? newOrder.orderStatusId.id : ""
+                  }
+                  label="Статус"
+                  objectsList={orderStatus}
+                  list="orders"
+                  onChange={editStatus}
                 />
               </div>
               <div className="car-setting__setting">
-                <Input
-                  key={Math.random(0, 1)}
-                  value={newOrder.cityId ? newOrder.cityId.name : ""}
+                <SelectEntity
+                  value={newOrder.cityId ? newOrder.cityId.id : ""}
                   label="Город"
-                  arr={cities}
+                  objectsList={cities}
                   list="cities_new"
-                  onChange={editCityHandler}
+                  onChange={editCity}
                 />
-                <Input
-                  key={Math.random(0, 1)}
-                  value={newOrder.pointId ? newOrder.pointId.address : ""}
+                <SelectEntity
+                  value={newOrder.pointId ? newOrder.pointId.id : ""}
                   label="Адрес"
-                  //onChange={editCategoryHandler}
+                  onChange={editPoint}
                   list="category"
-                  arr={points}
+                  objectsList={newPoints}
                   list="points"
                 />
               </div>
               <div className="car-setting__setting">
-                <div className = "input">
-            <span className = "input__label"> Дата начала аренды</span>
-            <DateTimePicker
-                  value={new Date(newOrder.dateFrom)}
-                  format="y-MM-dd H:mm"
-                  calendarIcon={null}
-                  onChange = {setDateFrom}
-                  className = "date-time"
-                />
+                <div className="input">
+                  <span className="input__label"> Дата начала аренды</span>
+                  <DateTimePicker
+                    value={dateFromValue}
+                    format="y-MM-dd H:mm"
+                    calendarIcon={null}
+                    onChange={setDateFrom}
+                    className="date-time"
+                  />
                 </div>
-                <div className = "input">
-              <span className = "input__label"> Дата окончания аренды</span>
-                <DateTimePicker
-                  value={new Date(newOrder.dateTo)}
-                  format="y-MM-dd H:mm"
-                  calendarIcon={null}
-                  onChange = {setDateTo}
-                  className = "date-time"
-                />
+                <div className="input">
+                  <span className="input__label"> Дата окончания аренды</span>
+                  <DateTimePicker
+                    value={dateToValue}
+                    format="y-MM-dd H:mm"
+                    calendarIcon={null}
+                    onChange={setDateTo}
+                    className="date-time"
+                  />
                 </div>
               </div>
               <div className="car-setting__setting add">
-                <Input
-                  key={Math.random(0, 1)}
-                  value={newOrder.rateId ? newOrder.rateId.rateTypeId.name : ""}
+                <SelectEntity
+                  value={newOrder.rateId ? newOrder.rateId.rateTypeId.id : ""}
                   label="Тариф"
-                  arr={rates}
+                  objectsList={rates}
                   list="rates"
-                  onChange={editRateHandler}
-                  path = {"el.rateTypeId.name"}
+                  onChange={editRate}
+                  path={"el.rateTypeId.name"}
                 />
                 <Input
-                  key={Math.random(0, 1)}
                   value={newOrder.price}
                   label="Цена"
                   type="number"
                   onChange={editPriceHandler}
                 />
               </div>
-             
+              <CheckOrder
+                tank={newOrder.isFullTank}
+                baby={newOrder.isNeedChildChair}
+                drive={newOrder.isRightWheel}
+              />
             </div>
             <div className="car-setting__buttons">
               <div className="car-setting__buttons-container">
@@ -161,22 +219,21 @@ const OrderCreate = () => {
                   onClick={changeOrderHandler}
                   label="Сохранить"
                   className="button button__blue "
-                  pathedit = {Path.ORDERS}
+                  pathedit={Path.ORDERS}
                 />
 
                 <ButtonCard
                   onClick={cancelOrderHandler}
                   label="Отменить"
                   className="button button__gray "
-                  pathedit = {Path.ORDERS}
+                  pathedit={Path.ORDERS}
                 />
               </div>
-              <div className="car-setting__buttons-container"></div>
               <ButtonCard
                 onClick={deleteOrderHandler}
                 label="Удалить"
                 className="button button__red "
-                pathedit = {Path.ORDERS}
+                pathedit={Path.ORDERS}
               />
             </div>
           </div>

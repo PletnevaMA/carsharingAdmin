@@ -1,15 +1,15 @@
-import {SET_POP, SET_POP_CREATE} from '../reducers/pop';
+import { popActions } from "../consts";
 
 export const setPop = (bool) => {
     return {
-      type: SET_POP,
+      type: popActions.SET_POP,
       payload: bool,
     };
   };
 
   export const setPopCreate = (bool) => {
     return {
-      type: SET_POP_CREATE,
+      type: popActions.SET_POP_CREATE,
       payload: bool,
     };
   };

@@ -12,3 +12,138 @@
     border: 1px solid $inputColorActive;
   }
 }
+
+@mixin menu {
+  .menu{
+    width:0;
+    &__head{
+      display: none;
+    }
+  }
+  .menu__list{
+   width: 0;
+  }
+  #menu__toggle {
+    opacity: 0;
+    display: none;
+  }
+  
+ 
+  #menu__toggle:checked ~ .menu__btn > span {
+    background-color: transparent;
+  
+    &::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+  
+    &::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+  }
+  
+  #menu__toggle:checked ~ .menu__list {
+    list-style: none;
+  
+    & .menu__item {
+      visibility: visible;
+      width: 100vw;
+    }
+    & .menu__icon {
+      visibility: visible;
+    }
+  }
+  
+  .menu__btn {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 64px;
+    margin-top: 0;
+    cursor: pointer;
+    background-color: transparent;
+    z-index: 3;
+  
+    & > span,
+    & > span::before,
+    & > span::after {
+      display: block;
+      position: fixed;
+      width: 28px;
+      height: 4px;
+      background-color: gray;
+      
+    }
+  
+    & > span {
+      position: absolute;
+      top: 34px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 2px;
+    }
+  
+    & > span::before {
+      content: "";
+      top: -8px;
+      border-radius: 2px;
+    }
+  
+    & > span::after {
+      content: "";
+      top: 8px;
+      border-radius: 2px;
+    }
+  }
+  .menu__list {
+    display: block;
+    position: fixed;
+    top: 67px;
+    height: 100%;
+    margin: 0;
+    background-color: transparent;
+    
+    z-index: 2;
+  }
+  
+  .menu__item {
+    visibility: hidden;
+    display: block;
+    color: gray;
+    font-weight: 500;
+    font-size: 32px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .menu__item__visible{
+    visibility: visible;   
+    width: 100vw;
+  }
+}
+
+
+@mixin line {
+  .order__line{
+    &__container{
+      display: block;
+    }
+    &__item{
+      display: flex;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+  .entity__line{
+    &__container{
+      display: block;
+      justify-content: space-between;
+    }
+    &__item{
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+}
+

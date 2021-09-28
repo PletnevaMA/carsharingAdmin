@@ -8,6 +8,7 @@
   box-shadow: $shadow;
   margin-right: 30px;
   margin-bottom: 20px;
+  color: $textColor;
   &__image {    
     display: flex;
     flex-direction: column;
@@ -28,7 +29,6 @@
     &__name {
       text-align: center;
       font-size: 25px;
-      color: $textColor;
       margin-bottom: 4px;
       font-weight: 400;
     }
@@ -63,7 +63,6 @@
       label {
         font-size: 10px;
         font-weight: 400;
-        color: $textColor;
         padding: 8px 15px;
         background-color: $buttonColorGray;
         border-left: 1px solid $inputColor;
@@ -76,10 +75,8 @@
     &__title {
       font-size: 13px;
       font-weight: 400;
-      color: $textColor;
     }
     &__percent {
-      color: $textColor;
       font-size: 12px;
     }
     &__container {
@@ -99,12 +96,10 @@
       display: block;
       margin-bottom: 13px;
       font-size: 13px;
-      color: $textColor;
     }
     &__text {
       width: 90%;
       height: 100px;
-      color: $textColor;
       font-size: 13px;
       border: 1px solid $inputColor;
       border-radius: 5px;
@@ -115,7 +110,11 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (max-width: $mobile) {
+  .information{
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
   .info-block {
     max-width: 334px;
     margin-right: 20px;

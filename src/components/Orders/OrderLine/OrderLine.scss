@@ -1,17 +1,18 @@
 @import "../../../variable.scss";
+@import '../../../mixins.scss';
 .order__line {
   padding-top: 15px;
   padding-bottom: 15px;
   &__container {
     display: flex;
     flex-direction: row;
+    border-bottom: 1px solid $ligth-gray;
   }
   &__item {
     display: flex;
     align-items: center;
     width: 100%;
     font: $font;
-   
   }
   &__column {
     flex-direction: column;
@@ -21,7 +22,7 @@
     margin-bottom: 8px;
     width: 150px;
     text-align: center;
-    font-family: $font;  
+    font-family: $font;
   }
 
   &__car {
@@ -29,7 +30,7 @@
     flex-direction: column;
     padding-right: 20px;
     color: #889098;
-    width: 250px;
+    width: 220px;
     &__place {
       span {
         color: black;
@@ -40,7 +41,7 @@
         color: black;
       }
     }
-    &__image{
+    &__image {
       object-fit: cover;
     }
     &__color {
@@ -49,17 +50,9 @@
       }
     }
   }
-}
-
-@media (max-width: $mobile){
-  .order__line{
-    &__container{
-      display:block;
-    }
-    &__item{
-      display: block;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
+  &__image {
+    display: flex;
+    width: 500px;
+    height: 100px;
   }
 }

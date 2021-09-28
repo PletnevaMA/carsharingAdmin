@@ -1,50 +1,41 @@
+import { rateActions } from "../consts";
 const defaultState = {
   rates: [],
+  ratesTypes: [],
   newRate: {
-    rateTypeId: {
-      unit: "",
-      name: "",
-    },
+    rateTypeId: null,
     price: 0,
   },
 };
 
-export const GET_RATES = "getRates";
-export const CREATE_RATE = "createRate";
-export const EDIT_NAME = "editName";
-export const EDIT_PRICE = "editPrice";
-export const EDIT_UNIT = "editUnit";
-
 export default (state = defaultState, { type, payload }) => {
   switch (type) {
-    case GET_RATES:
+    case rateActions.GET_RATES:
       return {
         ...state,
         rates: payload,
       };
 
-    case CREATE_RATE:
+    case rateActions.GET_RATES_TYPES:
+      return {
+        ...state,
+        ratesTypes: payload,
+      };
+
+    case rateActions.CREATE_RATE:
       return {
         ...state,
         newRate: payload,
       };
-    case EDIT_NAME:
+    case rateActions.EDIT_NAME:
       return {
         ...state,
-        newRate: {
-          ...state.newRate,
-          rateTypeId: { ...state.newRate.rateTypeId, name: payload },
-        },
+        newRate: { ...state.newRate, rateTypeId: payload },
       };
-    case EDIT_PRICE:
+    case rateActions.EDIT_PRICE:
       return {
         ...state,
         newRate: { ...state.newRate, price: payload },
-      };
-    case EDIT_PRICE:
-      return {
-        ...state,
-        newRate: { ...state.newRate.rateTypeId, unit: payload },
       };
 
     default:

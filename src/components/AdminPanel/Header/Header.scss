@@ -7,6 +7,7 @@
   box-shadow: $shadow;
   background-color: #fff;
   height: 68px;
+  z-index: 100;
   &__list {
     min-width: 100vw;
     height: 67px;
@@ -27,6 +28,7 @@
       width: 60%;
       border-right: 1px solid #cacedb;
       padding-left: 25px;
+      
       &__input {
         width: 100%;
         background-color: transparent;
@@ -80,17 +82,23 @@
 
 @media (max-width: 768px) {
   .header {
+    &__list {
+      min-width: 100vw;
+      
+    }
     &__item {
       &__shape {
         width: 60%;
+        &__logo{
+          visibility: hidden;
+        }
       }
       &__notification {
         width: 50px;
       }
-      &__avatar {
-        width: 90px;
-       
-      }
+      &__avatar__name{
+        display: none;
+      }      
     }
   }
 }

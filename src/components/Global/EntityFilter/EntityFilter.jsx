@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import "./EntityFilter.scss";
 import { setFilter } from "../../../redux/actions/filter";
 
-const EntityFilter = ({ filter, placeholder, setValue }) => {
+const EntityFilter = ({ filter, placeholder }) => {
   const inputref = useRef(null);
   const dispatch = useDispatch();
 
@@ -27,7 +27,13 @@ const EntityFilter = ({ filter, placeholder, setValue }) => {
         />
         <datalist id="filter__list">
           {filter.map((filter) => {
-            return <option value={filter.name} />;
+            return (
+              <option
+                key={filter.id}
+                className="filter-order__option"
+                value={filter.name}
+              />
+            );
           })}
         </datalist>
       </div>

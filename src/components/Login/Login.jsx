@@ -12,18 +12,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 const Login = () => {
-   const { username, password } = useSelector((state) => state.user);
+  const { username, password } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const authUser = useCallback(() => {
     let secret = secret_key;
-    let random =  uuidv4();
+    let random = uuidv4();
     let basicKey = window.btoa(`${random}:${secret}`);
     let body = {
       username: `${username}`,
       password: `${password}`,
     };
-    console.log(body, basicKey);
+
     dispatch(userAuthorize(body, basicKey));
   }, [password, username]);
 
@@ -39,7 +39,7 @@ const Login = () => {
       return dispatch(changePassword(e.target.value));
     },
     [password, changeUserName]
-  ); 
+  );
   return (
     <section className="login">
       <div className="login__box">
@@ -58,11 +58,7 @@ const Login = () => {
                 id="email"
                 onChange={(e) => changeUsernameHandler(e)}
               />
-              <label
-                htmlFor="password"             
-              >
-                Пароль{" "}
-              </label>
+              <label htmlFor="password">Пароль </label>
               <input
                 type="password"
                 className="login__container__password"

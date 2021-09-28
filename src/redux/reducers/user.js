@@ -1,3 +1,4 @@
+import { userActions } from "../consts";
 const defaultState = {
   isUserLogin: false,
   password: "",
@@ -9,13 +10,11 @@ const defaultState = {
   basicKey: null,  
 };
 
-export const USER_LOGIN = "userAuthorize";
-export const CHANGE_USERNAME = 'changeUserName';
-export const CHANGE_PASSWORD = 'changePassword';
+
 
 export default (state = defaultState, { type, payload }) => {
   switch (type) {
-    case USER_LOGIN:
+    case userActions.USER_LOGIN:
       return {
         ...state,
         isUserLogin: payload.isUserLogin,
@@ -25,12 +24,12 @@ export default (state = defaultState, { type, payload }) => {
         isUserLoginFailed: payload.isUserLoginFailed,
         basicKey: payload.basicKey,
       };
-    case CHANGE_USERNAME:
+    case userActions.CHANGE_USERNAME:
       return {
         ...state,
         username: payload,
       };
-    case CHANGE_PASSWORD:
+    case userActions.CHANGE_PASSWORD:
       return {
         ...state,
         password: payload,

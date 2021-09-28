@@ -4,7 +4,7 @@ import { Path } from "../../const";
 import Orders from "../Orders/Orders";
 import Cars from "../Cars/Cars";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import Cities from "../Cities/Cities";
@@ -19,13 +19,13 @@ const AdminPanel = () => {
       <Menu />
       <Header />
       <Switch>
-        <Route path={Path.CAR} render={() => <CarCreate />} />
-        <Route path={Path.ORDER} render={() => <OrderCreate />} />
-        <Route path={Path.ORDERS} render={() => <Orders />} />
-        <Route path={Path.CARLIST} render={() => <Cars />} />
-        <Route path={Path.CITIES} render={() => <Cities />} />
-        <Route path={Path.POINTS} render={() => <Points />} />
-        <Route path={Path.RATES} render={() => <Rates />} />
+        <Route path={Path.CAR} component={CarCreate} />
+        <Route path={Path.ORDER} component={OrderCreate} />
+        <Route path={Path.ORDERS} component={Orders} />
+        <Route path={Path.CARLIST} component={Cars} />
+        <Route path={Path.CITIES} component={Cities} />
+        <Route path={Path.POINTS} component={Points} />
+        <Route path={Path.RATES} component={Rates} />
       </Switch>
       <Footer />
     </main>

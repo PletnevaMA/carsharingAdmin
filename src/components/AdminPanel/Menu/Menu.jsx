@@ -3,6 +3,7 @@ import { Path } from "../../../const";
 import "./Menu.scss";
 import { Link } from "react-router-dom";
 import logoIcon from "../../../icons/LogoIcon.svg";
+import classNames from "classnames";
 
 import cities from "../../../icons/menu/cities.svg";
 import orders from "../../../icons/menu/orders.svg";
@@ -19,19 +20,19 @@ const Menu = () => {
       image: cart,
     },
     {
-      id: 6,
+      id: 1,
       title: "Карточка заказа",
       link: Path.ORDER,
       image: cart,
     },
     {
-      id: 1,
+      id: 2,
       title: "Заказы",
       link: Path.ORDERS,
       image: orders,
     },
     {
-      id: 2,
+      id: 3,
       title: "Автомобили",
       link: Path.CARLIST,
       image: cities,
@@ -49,7 +50,7 @@ const Menu = () => {
       image: points,
     },
     {
-      id: 5,
+      id: 6,
       title: "Тарифы",
       link: Path.RATES,
       image: rates,
@@ -65,8 +66,9 @@ const Menu = () => {
       <input
         id="menu__toggle"
         type="checkbox"
-        checked={isOpen ? true : false}
+        checked={isOpen}
         onClick={() => clickHandler()}
+        onChange={() => {}}
       />
       <label className="menu__btn" htmlFor="menu__toggle">
         <span></span>
@@ -79,7 +81,8 @@ const Menu = () => {
         {menuItems.map((el) => {
           return (
             <li
-              className={`menu__item ${isOpen ? "__visible" : ""}`}
+              key={el.id}
+              className={classNames("menu__item", { visible: isOpen })}
               onClick={() => clickHandler()}
             >
               <Link to={el.link} className="menu__item__box">

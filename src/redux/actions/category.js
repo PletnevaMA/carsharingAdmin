@@ -1,4 +1,4 @@
-import { GET_CATEGORY } from "../reducers/category";
+import { GET_CATEGORY } from "../consts";
 import {url} from "../../const";
 
 export const getCategory = () => async (dispatch) => {

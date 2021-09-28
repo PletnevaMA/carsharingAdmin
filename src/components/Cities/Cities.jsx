@@ -10,14 +10,20 @@ import { Path } from "../../const";
 
 import { getCities } from "../../redux/actions/cities";
 import { useDispatch, useSelector } from "react-redux";
-import { createCity, editCity, changeCity, deleteCity, addCity} from "../../redux/actions/cities";
+import {
+  createCity,
+  editCity,
+  changeCity,
+  deleteCity,
+  addCity,
+} from "../../redux/actions/cities";
 import { setPop, setPopCreate } from "../../redux/actions/pop";
 import Pop from "../Global/Pop/Pop";
 
 const Cities = () => {
   const { cities, newCity } = useSelector((state) => state.cities);
   const { pop, popCreate } = useSelector((state) => state.pop);
-  const {id, name} = newCity;
+  const { id, name } = newCity;
   const dispatch = useDispatch();
 
   const editCityHandler = useCallback((val) => {
@@ -40,28 +46,23 @@ const Cities = () => {
     [name]
   );
 
-  const changeCityHandler = useCallback(
-    () => {
-      
-      dispatch(changeCity(newCity, id));
-      dispatch(setPop(false));
-    },
-    [newCity, id]
-  );
+  const changeCityHandler = useCallback(() => {
+    dispatch(changeCity(newCity, id));
+    dispatch(setPop(false));
+  }, [newCity, id]);
 
-  const createCityHandler = useCallback(() => {   
+  const createCityHandler = useCallback(() => {
     dispatch(addCity(newCity));
     dispatch(setPopCreate(false));
   }, [newCity, id]);
-
 
   const editCityArr = [
     {
       label: "Город",
       value: newCity.name,
-      onChange: editNameCityHandler
-    }    
-  ]
+      onChange: editNameCityHandler,
+    },
+  ];
 
   return (
     <>
@@ -70,12 +71,16 @@ const Cities = () => {
         <Table>
           <div className="options">
             <EntityFilter filter={null} placeholder="" />
-            <ButtonNewEntity onClick={() => dispatch(setPopCreate(true))} />
+            <ButtonNewEntity
+              onClick={() => dispatch(setPopCreate(true))}
+              pathedit={Path.CITIES}
+            />
           </div>
           <ul className="container">
             {cities.map((el) => {
               return (
                 <EntityLine
+                  key={el.id}
                   item1={el.name}
                   onClickEdit={() => editCityHandler(el)}
                   pathedit={Path.CITIES}
@@ -87,10 +92,13 @@ const Cities = () => {
             })}
           </ul>
         </Table>
-        {pop && <Pop editEntity = {editCityArr} onClickButton = {changeCityHandler}/>}
-        {popCreate && <Pop editEntity={editCityArr} onClickButton={createCityHandler} />}
+        {pop && (
+          <Pop editEntity={editCityArr} onClickButton={changeCityHandler} />
+        )}
+        {popCreate && (
+          <Pop editEntity={editCityArr} onClickButton={createCityHandler} />
+        )}
       </EntityContainer>
-      
     </>
   );
 };

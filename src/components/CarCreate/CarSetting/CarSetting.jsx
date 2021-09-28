@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useState, memo } from "react";
+import React, { useCallback, useEffect, useState} from "react";
 import "./CarSetting.scss";
 import Input from "../../Global/Input/Input";
+import SelectEntity from "../../Global/Select/Select";
 import { useSelector } from "react-redux";
 import ColorSetting from "./ColorSetting/ColorSetting";
 import {
@@ -11,7 +12,8 @@ import {
   editPriceMaxCar,
   changeCar,
   deleteCar,
-  createCar
+  createCar,
+  addCar,
 } from "../../../redux/actions/carCreate";
 import { getCategory } from "../../../redux/actions/category";
 import { useDispatch } from "react-redux";
@@ -20,7 +22,7 @@ import { Path } from "../../../const";
 
 const CarSetting = () => {
   const { newCar } = useSelector((state) => state.carCreate);
-  const { colors, categoryId, name, priceMin, priceMax, id } = newCar;
+  const { categoryId, name, priceMin, priceMax, id } = newCar;
 
   const [colorNew, setColor] = useState("");
 
@@ -37,12 +39,11 @@ const CarSetting = () => {
     },
     [name]
   );
-  const editCategoryHandler = useCallback(
-    (e) => {
-      return dispatch(editCategoryCar(e.target.value));
-    },
-    [categoryId]
-  );
+  let label;
+  if (newCar.id === "") {
+    label = "Создать";
+  } else label = "Применить";
+
   const editPriceMinHandler = useCallback(
     (e) => {
       return dispatch(editPriceMinCar(e.target.value));
@@ -55,15 +56,18 @@ const CarSetting = () => {
     },
     [priceMax]
   );
-  const editColorsHandler = useCallback(() => {
-    return dispatch(addColor(colorNew));
-  }, [colors]);
+
   const newColorHandler = useCallback((e) => {
     setColor(e.target.value);
   });
 
   const changCarHandler = useCallback(() => {
-    dispatch(changeCar(newCar, id));
+    if (label === "Создать") {
+      dispatch(addCar(newCar));
+    }
+    if (label === "Применить") {
+      dispatch(changeCar(newCar, id));
+    }
   }, [newCar, id]);
 
   const deleteCarHandler = useCallback(() => {
@@ -71,12 +75,32 @@ const CarSetting = () => {
   }, [id]);
 
   const cancelCarHandler = useCallback(() => {
-    dispatch(createCar());
-  },);
+    dispatch(
+      createCar({
+        id: "",
+        priceMax: 0,
+        priceMin: 0,
+        name: "",
+        thumbnail: {
+          size: 0,
+          originalname: "",
+          mimetype: "",
+          path: "",
+        },
+        description: "",
+        categoryId: {
+          name: "",
+          description: "",
+          id: "",
+        },
+        colors: [],
+      })
+    );
+  });
 
   let categoryIdName;
   newCar.categoryId !== null
-    ? (categoryIdName = newCar.categoryId.name)
+    ? (categoryIdName = newCar.categoryId.id)
     : (categoryIdName = "");
   return (
     <div className="car-setting">
@@ -85,30 +109,26 @@ const CarSetting = () => {
           <span className="car-setting__title">Настройка автомобиля</span>
           <div className="car-setting__setting">
             <Input
-              key={Math.random(0, 1)}
               value={newCar.name}
               label="Модель автомобиля"
               onChange={editNameHandler}
             />
-            <Input
-              key={Math.random(0, 1)}
+            <SelectEntity
               value={categoryIdName}
               label="Тип автомобиля"
-              onChange={editCategoryHandler}
+              onChange={editCategoryCar}
               list="category"
-              arr={categories}
+              objectsList={categories}
             />
           </div>
           <div className="car-setting__setting">
             <Input
-              key={Math.random(0, 1)}
               value={newCar.priceMin}
               label="Минимальная цена"
               onChange={editPriceMinHandler}
               type="number"
             />
             <Input
-              key={Math.random(0, 1)}
               value={newCar.priceMax}
               label="Максимальная цена"
               onChange={editPriceMaxHandler}
@@ -117,40 +137,42 @@ const CarSetting = () => {
           </div>
           <div className="car-setting__setting add">
             <Input
-              key={Math.random(0, 1)}
               label="Доступные цвета"
               onChange={newColorHandler}
+              value={colorNew}
             />
-            {console.log(colorNew)}
           </div>
           <button
             className="car-setting__buttons__add"
-            onClick={editColorsHandler}
+            onClick={() => {
+              dispatch(addColor(colorNew));
+              setColor("");
+            }}
           ></button>
-          <ColorSetting key={Math.random(0, 1)} />
+          <ColorSetting />
         </div>
         <div className="car-setting__buttons">
           <div className="car-setting__buttons-container">
             <ButtonCard
               onClick={changCarHandler}
-              label="Сохранить"
+              label={label}
               className="button button__blue "
-              pathedit = {Path.CARLIST}
+              pathedit={Path.CARLIST}
             />
-         
+
             <ButtonCard
               onClick={cancelCarHandler}
               label="Отменить"
               className="button button__gray "
-              pathedit = {Path.CARLIST}
+              pathedit={Path.CARLIST}
             />
           </div>
-          <div className="car-setting__buttons-container"></div>          
+          <div className="car-setting__buttons-container"></div>
           <ButtonCard
             onClick={deleteCarHandler}
             label="Удалить"
             className="button button__red "
-            pathedit = {Path.CARLIST}
+            pathedit={Path.CARLIST}
           />
         </div>
       </div>

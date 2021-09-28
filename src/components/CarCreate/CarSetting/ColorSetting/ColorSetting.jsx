@@ -12,13 +12,13 @@ const ColorSetting = () => {
     <div className="colors">
       {newCar.colors.map((el) => {
         return (
-          <div className="colors__check">
-            <input type="checkbox" value={el} id={el} checked />            
+          <div key = {el} className="colors__check">
+            <input type="checkbox" value={el} id={el} checked />
             <label
               className="colors__item"
               htmlFor={el}
               onClick={() => dispatch(deleteColor(newCar.colors.indexOf(el)))}
-            >                
+            >
               {el}
             </label>
           </div>

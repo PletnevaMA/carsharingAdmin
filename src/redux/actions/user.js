@@ -1,4 +1,4 @@
-import { USER_LOGIN, CHANGE_USERNAME, CHANGE_PASSWORD } from "../reducers/user";
+import { userActions } from "../consts";
 import api from "../../components/api";
 
 export const userLogin = (
@@ -10,7 +10,7 @@ export const userLogin = (
   basicKey
 ) => {
   return {
-    type: USER_LOGIN,
+    type: userActions.USER_LOGIN,
     payload: {
       isUserLogin,
       refresh_token: refresh_Token,
@@ -52,14 +52,14 @@ export const userAuthorize = (body, basicKey) => async (dispatch) => {
 
 export const changeUserName = (value) => {
   return {
-    type: CHANGE_USERNAME,
+    type: userActions.CHANGE_USERNAME,
     payload: value,
   };
 };
 
 export const changePassword = (value) => {
   return {
-    type: CHANGE_PASSWORD,
+    type: userActions.CHANGE_PASSWORD,
     payload: value,
   };
 };

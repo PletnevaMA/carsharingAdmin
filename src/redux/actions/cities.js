@@ -1,4 +1,4 @@
-import { GET_CITIES, CREATE_CITY, EDIT_CITY} from "../reducers/cities";
+import { cityActions, emptyObject } from "../consts";
 import {url} from "../../const";
 import api from '../../components/api';
 
@@ -9,7 +9,7 @@ export const getCities = () => async (dispatch) => {
         "X-Api-Factory-Application-Id": "5e25c641099b810b946c5d5b",
       },
     }).then((res) =>  res.json())
-      .then((res) => dispatch({ type: GET_CITIES, payload: res.data }))
+      .then((res) => dispatch({ type: cityActions.GET_CITIES, payload: res.data }))
     
   } catch (e) {
     console.error(e);
@@ -25,10 +25,7 @@ export const changeCity = (city, id) => async (dispatch) => {
       })
       .finally((res) => {
         dispatch(
-          createCity({
-            id: "",
-            name: "",
-          })
+          createCity(emptyObject.emptyCity)
         );
       });
   } catch (e) {
@@ -44,10 +41,7 @@ export const deleteCity = ( id) => async (dispatch) => {
       })
       .finally((res) => {
         dispatch(
-          createCity({
-            id: "",
-            name: "",
-          })
+          createCity(emptyObject.emptyCity)
         );
       });
   } catch (e) {
@@ -62,10 +56,7 @@ export const addCity = (city) => async (dispatch) => {
       })
       .finally((res) => {
         dispatch(
-          createCity({
-            id: "",
-            name: "",
-          })
+          createCity(emptyObject.emptyCity)
         );
       });
   } catch (e) {
@@ -75,14 +66,14 @@ export const addCity = (city) => async (dispatch) => {
 
 export const createCity = (newCity) => {
     return {
-      type: CREATE_CITY,
+      type: cityActions.CREATE_CITY,
       payload: newCity,
     };
   };
 
   export const editCity = (city) => {
     return {
-      type: EDIT_CITY,
+      type: cityActions.EDIT_CITY,
       payload: city,
     };
   };

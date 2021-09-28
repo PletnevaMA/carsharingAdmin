@@ -1,8 +1,7 @@
+import { GET_CATEGORY } from "../consts";
 const defaultState = {
   categories: [],
 };
-
-export const GET_CATEGORY = "getCategory";
 
 export default (state = defaultState, { type, payload }) => {
   switch (type) {
@@ -11,7 +10,6 @@ export default (state = defaultState, { type, payload }) => {
         ...state,
         categories: payload,
       };
-     
 
     default:
       return state;

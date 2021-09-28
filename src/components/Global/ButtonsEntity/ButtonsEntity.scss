@@ -4,6 +4,7 @@
 .buttons {
     display: flex;
     align-items: center;
+
   &__list {
     display: flex;
     border-radius: 5px;
@@ -11,7 +12,7 @@
     border: 1px solid $gray;
     border-radius: 5px;
     padding-inline-start: 0px;
-   
+   margin-bottom: 10px;
   }
   &__item {
     cursor: pointer;
@@ -31,12 +32,6 @@
   
 }
 
-@media (max-width: $mobile) {
-  .buttons{
-    &__item{
-      width: 32%
-    }
-  }
-}
+
 
 

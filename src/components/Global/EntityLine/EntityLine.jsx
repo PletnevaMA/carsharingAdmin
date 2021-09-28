@@ -15,12 +15,13 @@ const EntityLine = ({
 }) => {
   if (isVisible) {
     return (
-      <ul className="order__line__container">
-        <li className="order__line__item">{item1}</li>
-        <li className="order__line__item">{item2}</li>
-        <li className="order__line__item">{item3}</li>
-        <li className="order__line__item">{item4}</li>
-        <ButtonsEntity          
+      <ul className="entity__line__container">
+        <li className="entity__line__item">{item1}</li>
+        <li className="entity__line__item">{item2}</li>
+        <li className="entity__line__item">{item3}</li>
+        <li className="entity__line__item">{item4}</li>
+
+        <ButtonsEntity
           pathedit={pathedit}
           onClickEdit={() => onClickEdit()}
           pathdelete={pathdelete}
@@ -29,9 +30,8 @@ const EntityLine = ({
       </ul>
     );
   } else {
-    return (<></>);
+    return <></>;
   }
- 
-} ;
+};
 
 export default EntityLine;

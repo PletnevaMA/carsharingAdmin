@@ -1,42 +1,40 @@
-import React, {useCallback} from "react";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { editDescriptionCar, editImageCar } from "../../../redux/actions/carCreate";
+import {
+  editDescriptionCar,
+  editImageCar,
+} from "../../../redux/actions/carCreate";
 
 import "./CarInformation.scss";
 
 const CarInformation = () => {
-
-  const {newCar} = useSelector((state) => state.carCreate);
+  const { newCar } = useSelector((state) => state.carCreate);
   const dispatch = useDispatch();
-  const {description} = newCar;
-
-  let categoryIdName;
-  newCar.categoryId !== null ? categoryIdName = newCar.categoryId.name : categoryIdName = "";
 
   const changeImageHandler = (evt) => {
-    evt.preventDefault()   
-    
-        const file = evt.target.files[0]
-        console.log(file);        
-        const reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = () => {
-            const image = {
-                originalname: file.name,
-                size: file.size,
-                mimetype: file.type,
-                path: reader.result 
-            }
-            dispatch(editImageCar(image))
-        }
-}
+    evt.preventDefault();
+
+    const file = evt.target.files[0];
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const image = {
+        originalname: file.name,
+        size: file.size,
+        mimetype: file.type,
+        path: reader.result,
+      };
+      dispatch(editImageCar(image));
+    };
+  };
 
   const editDescriptionHandler = useCallback(
     (e) => {
       return dispatch(editDescriptionCar(e.target.value));
     },
-    [description]
+    [newCar.description]
   );
 
   function pathImage(img) {
@@ -47,20 +45,22 @@ const CarInformation = () => {
   return (
     <section className="information">
       <div className="information__image">
-      <img  
-      src = {pathImage(newCar.thumbnail.path)}       
-          alt="Изображение отсутствует"          
+        <img
+          src={pathImage(newCar.thumbnail ? newCar.thumbnail.path : "")}
+          alt="Изображение отсутствует"
           className="information__image__image"
         />
         <span className="information__image__name">{newCar.name}</span>
-        <span className="information__image__category">{categoryIdName}</span>
+        <span className="information__image__category">
+          {newCar.categoryId ? newCar.categoryId.name : ""}
+        </span>
         <div className="information__image__download">
-        <input
+          <input
             type="file"
             name=""
             id="file"
             onChange={(e) => changeImageHandler(e)}
-          />         
+          />
           <label htmlFor="file">Обзор</label>
         </div>
       </div>
@@ -78,14 +78,13 @@ const CarInformation = () => {
       <div className="information__description">
         <span className="information__description__label">Описание</span>
         <textarea
-             className="information__description__text"
-              value={newCar.description}
-              onChange={editDescriptionHandler}
-            /> 
+          className="information__description__text"
+          value={newCar.description}
+          onChange={editDescriptionHandler}
+        />
       </div>
     </section>
   );
 };
-
 
 export default CarInformation;

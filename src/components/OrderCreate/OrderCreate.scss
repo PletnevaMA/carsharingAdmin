@@ -1,4 +1,5 @@
 
+@import '../../variable.scss';
 
 .date-time{
     margin-right: 50px;
@@ -17,4 +18,10 @@
 }
 .react-datetime-picker__inputGroup__input:invalid {
     background: transparent;
+}
+
+@media (max-width: $mobile) {
+    .date-time{
+        width: 100px;
+    }
 }

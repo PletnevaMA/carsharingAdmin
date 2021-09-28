@@ -1,10 +1,4 @@
-import {
-  GET_RATES,
-  CREATE_RATE,
-  EDIT_NAME,
-  EDIT_PRICE,
-  EDIT_UNIT
-} from "../reducers/rates";
+import { rateActions, emptyObject } from "../consts";
 import { url } from "../../const";
 import api from "../../components/api";
 
@@ -16,39 +10,48 @@ export const getRates = () => async (dispatch) => {
       },
     })
       .then((res) => res.json())
-      .then((res) => dispatch({ type: GET_RATES, payload: res.data }));
+      .then((res) => dispatch({ type: rateActions.GET_RATES, payload: res.data }));
   } catch (e) {
     console.error(e);
   }
 };
 
+export const getRatesTypes = () => async (dispatch) => {
+  try {
+    await fetch(`${url}db/rateType`, {
+      headers: {
+        "X-Api-Factory-Application-Id": "5e25c641099b810b946c5d5b",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => dispatch({ type: rateActions.GET_RATES_TYPES, payload: res.data }));
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+
 export const createRates = (newRate) => {
   return {
-    type: CREATE_RATE,
+    type: rateActions.CREATE_RATE,
     payload: newRate,
   };
 };
 
 export const editName = (name) => {
   return {
-    type: EDIT_NAME,
+    type: rateActions.EDIT_NAME,
     payload: name,
   };
 };
 
 export const editPrice = (price) => {
   return {
-    type: EDIT_PRICE,
+    type: rateActions.EDIT_PRICE,
     payload: price,
   };
 };
 
-export const editUnit = (unit) => {
-  return {
-    type: EDIT_UNIT,
-    payload: unit,
-  };
-};
 
 export const changeRate = (rate, id) => async (dispatch) => {
   try {
@@ -60,13 +63,7 @@ export const changeRate = (rate, id) => async (dispatch) => {
       })
       .finally((res) => {
         dispatch(
-          createRates({
-            rateTypeId: {
-              unit: "",
-              name: "",
-            },
-            price: 0,
-          })
+          createRates(emptyObject.emptyRate)
         );
       });
   } catch (e) {
@@ -84,13 +81,7 @@ export const deleteRate = (id) => async (dispatch) => {
       })
       .finally((res) => {
         dispatch(
-          createRates({
-            rateTypeId: {
-              unit: "",
-              name: "",
-            },
-            price: 0,
-          })
+          createRates(emptyObject.emptyRate)
         );
       });
   } catch (e) {
@@ -108,13 +99,7 @@ export const createRate = (rate) => async (dispatch) => {
       })
       .finally((res) => {
         dispatch(
-          createRates({
-            rateTypeId: {
-              unit: "",
-              name: "",
-            },
-            price: 0,
-          })
+          createRates(emptyObject.emptyRate)
         );
       });
   } catch (e) {

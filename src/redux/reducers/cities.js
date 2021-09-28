@@ -1,3 +1,5 @@
+import { cityActions } from "../consts";
+
 const defaultState = {
   cities: [],
   newCity: {
@@ -6,24 +8,20 @@ const defaultState = {
   },
 };
 
-export const GET_CITIES = "getCities";
-export const CREATE_CITY = "createCity";
-export const EDIT_CITY = "editCity";
-
 export default (state = defaultState, { type, payload }) => {
   switch (type) {
-    case GET_CITIES:
+    case cityActions.GET_CITIES:
       return {
         ...state,
         cities: payload,
       };
 
-    case CREATE_CITY:
+    case cityActions.CREATE_CITY:
       return {
         ...state,
         newCity: payload,
       };
-    case EDIT_CITY:
+    case cityActions.EDIT_CITY:
       return {
         ...state,
         newCity: { ...state.newCity, name: payload },

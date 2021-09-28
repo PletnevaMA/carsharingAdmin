@@ -1,10 +1,4 @@
-import {
-  GET_POINTS,
-  CREATE_POINT,
-  EDIT_ADDRESS,
-  EDIT_CITYPOINT,
-  EDIT_POINT_NAME,
-} from "../reducers/points";
+import { pointActions, emptyObject } from "../consts";
 import { url } from "../../const";
 import api from "../../components/api";
 
@@ -16,7 +10,7 @@ export const getPoints = () => async (dispatch) => {
       },
     })
       .then((res) => res.json())
-      .then((res) => dispatch({ type: GET_POINTS, payload: res.data }));
+      .then((res) => dispatch({ type: pointActions.GET_POINTS, payload: res.data }));
   } catch (e) {
     console.error(e);
   }
@@ -24,28 +18,28 @@ export const getPoints = () => async (dispatch) => {
 
 export const createPoint = (newPoint) => {
   return {
-    type: CREATE_POINT,
+    type: pointActions.CREATE_POINT,
     payload: newPoint,
   };
 };
 
 export const editAddress = (adress) => {
   return {
-    type: EDIT_ADDRESS,
+    type: pointActions.EDIT_ADDRESS,
     payload: adress,
   };
 };
 
 export const editCityPoint = (city) => {
   return {
-    type: EDIT_CITYPOINT,
+    type: pointActions.EDIT_CITYPOINT,
     payload: city,
   };
 };
 
 export const editPointName = (name) => {
   return {
-    type: EDIT_POINT_NAME,
+    type: pointActions.EDIT_POINT_NAME,
     payload: name,
   };
 };
@@ -60,15 +54,7 @@ export const deletePoint = (id) => async (dispatch) => {
       })
       .finally((res) => {
         dispatch(
-          createPoint({
-            id: "",
-            address: "",
-            name: "",
-            cityId: {
-              name: "",
-              id: "",
-            },
-          })
+          createPoint(emptyObject.emptyPoint)
         );
       });
   } catch (e) {
@@ -87,15 +73,7 @@ export const changePoint = (point, id) => async (dispatch) => {
       body: JSON.stringify(point),
     }).finally((res) => {
       dispatch(
-        createPoint({
-          id: "",
-          address: "",
-          name: "",
-          cityId: {
-            name: "",
-            id: "",
-          },
-        })
+        createPoint(emptyObject.emptyPoint)
       );
     });
   } catch (e) {
@@ -113,15 +91,7 @@ export const addPoint = (point) => async (dispatch) => {
       })
       .finally((res) => {
         dispatch(
-          createPoint({
-            id: "",
-            address: "",
-            name: "",
-            cityId: {
-              name: "",
-              id: "",
-            },
-          })
+          createPoint(emptyObject.emptyPoint)
         );
       });
   } catch (e) {

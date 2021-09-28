@@ -11,10 +11,10 @@ import Pop from "../Global/Pop/Pop";
 
 import {
   getRates,
+  getRatesTypes,
   createRates,
   editName,
   editPrice,
-  editUnit,
   changeRate,
   deleteRate,
   createRate,
@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPop, setPopCreate } from "../../redux/actions/pop";
 
 const Rates = () => {
-  const { rates } = useSelector((state) => state.rates);
+  const { rates, ratesTypes } = useSelector((state) => state.rates);
   const { newRate } = useSelector((state) => state.rates);
   const { pop, popCreate } = useSelector((state) => state.pop);
   const { name, price, id } = newRate;
@@ -31,24 +31,12 @@ const Rates = () => {
 
   useEffect(() => {
     dispatch(getRates());
+    dispatch(getRatesTypes());
   }, [newRate]);
-
-  const editNameRateHandler = useCallback(
-    (e) => {
-      return dispatch(editName(e.target.value));
-    },
-    [name]
-  );
 
   const editPriceHandler = useCallback(
     (e) => {
       return dispatch(editPrice(e.target.value));
-    },
-    [price]
-  );
-  const editUnitHandler = useCallback(
-    (e) => {
-      return dispatch(editUnit(e.target.value));
     },
     [price]
   );
@@ -59,7 +47,6 @@ const Rates = () => {
   }, [newRate, id]);
 
   const createRateHandler = useCallback(() => {
-   
     dispatch(createRate(newRate));
     dispatch(setPopCreate(false));
   }, [newRate, id]);
@@ -67,19 +54,15 @@ const Rates = () => {
   const editRate = [
     {
       label: "Тариф",
-      value: newRate.rateTypeId.name,
-      onChange: editNameRateHandler,
+      value: newRate.rateTypeId !== null ? newRate.rateTypeId.name : "",
+      onChange: editName,
+      arr: ratesTypes,
     },
     {
       label: "Цена",
       value: newRate.price,
       onChange: editPriceHandler,
       type: "number",
-    },
-    {
-      label: "Период аренды",
-      value: newRate.rateTypeId.unit,
-      onChange: editUnitHandler,
     },
   ];
   const editRateHandler = useCallback((val) => {
@@ -98,15 +81,19 @@ const Rates = () => {
       <Table>
         <div className="options">
           <EntityFilter filter={null} placeholder="" />
-          <ButtonNewEntity onClick={() => dispatch(setPopCreate(true))} />
+          <ButtonNewEntity
+            onClick={() => dispatch(setPopCreate(true))}
+            pathedit={Path.RATES}
+          />
         </div>
         <ul className="container">
           {rates.map((el) => {
             return (
               <EntityLine
-                item1={el.rateTypeId.name? el.rateTypeId.name: "" }
+                key={el.id}
+                item1={el.rateTypeId ? el.rateTypeId.name : ""}
                 item2={el.price}
-                item3={el.rateTypeId.unit?el.rateTypeId.unit: ""}
+                item3={el.rateTypeId ? el.rateTypeId.unit : ""}
                 onClickEdit={() => editRateHandler(el)}
                 pathedit={Path.RATES}
                 onClickDelete={() => deleteRateHandler(el, el.id)}
@@ -118,7 +105,9 @@ const Rates = () => {
         </ul>
       </Table>
       {pop && <Pop editEntity={editRate} onClickButton={changeRateHandler} />}
-      {popCreate && <Pop editEntity={editRate} onClickButton={createRateHandler} />}
+      {popCreate && (
+        <Pop editEntity={editRate} onClickButton={createRateHandler} />
+      )}
     </EntityContainer>
   );
 };

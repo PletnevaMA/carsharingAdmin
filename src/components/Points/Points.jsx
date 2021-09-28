@@ -49,8 +49,6 @@ const Points = () => {
     ? (cityPoint = newPoint.cityId.name)
     : (cityPoint = "");
 
- 
-
   const editAddressHandler = useCallback(
     (e) => {
       return dispatch(editAddress(e.target.value));
@@ -63,13 +61,6 @@ const Points = () => {
       return dispatch(editPointName(e.target.value));
     },
     [name]
-  );
-
-  const editCityPointHandler = useCallback(
-    (e) => {
-      return dispatch(editCityPoint( e.target.value));
-    },
-    [cityId]
   );
 
   const editPoint = [
@@ -86,14 +77,12 @@ const Points = () => {
     {
       label: "Город",
       value: cityPoint,
-      onChange: editCityPointHandler,
+      onChange: editCityPoint,
       arr: cities,
       list: "cities",
     },
   ];
 
-  let city;
-  let isVisible;
   useEffect(() => {
     dispatch(getPoints());
     dispatch(getCities());
@@ -109,36 +98,42 @@ const Points = () => {
     dispatch(setPopCreate(false));
   }, [newPoint, id]);
 
+  const isVisible = (el) => {
+    if (filter.length === 0) {
+      return true;
+    } else {
+      if (el.cityId !== null) {
+        return el.cityId.name === filter.value;
+      } else {
+        return false;
+      }
+    }
+  };
+
   return (
     <EntityContainer>
       <Title text="Адреса" />
       <Table>
         <div className="options">
           <EntityFilter filter={cities} placeholder="Город" />
-          <ButtonNewEntity onClick={() => dispatch(setPopCreate(true))} />
+          <ButtonNewEntity
+            onClick={() => dispatch(setPopCreate(true))}
+            pathedit={Path.POINTS}
+          />
         </div>
         <ul className="container">
           {points.map((el) => {
-            if (filter.length === 0) {
-              isVisible = true;
-            } else {
-              if (el.cityId !== null) {
-                isVisible = el.cityId.name === filter.value;
-              } else {
-                isVisible = false;
-              }
-            }
-            el.cityId ? (city = el.cityId.name) : (city = "Нет данных");
             return (
               <EntityLine
+                key={el.id}
                 item1={el.name}
                 item2={el.address}
-                item3={city}
+                item3={el.cityId ? el.cityId.name : "Нет данных"}
                 onClickEdit={() => editPointHandler(el)}
                 pathedit={Path.POINTS}
                 onClickDelete={() => deletePointHandler(el, el.id)}
                 pathdelete={Path.POINTS}
-                isVisible={isVisible}
+                isVisible={isVisible(el)}
               />
             );
           })}

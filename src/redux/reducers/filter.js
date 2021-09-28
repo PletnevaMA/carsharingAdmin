@@ -1,8 +1,9 @@
+import { SET_FILTER } from "../consts";
 const defaultState = {    
     filter: "",
   };
   
-  export const SET_FILTER = "setFilter";
+  
   
   export default (state = defaultState, { type, payload }) => {
     switch (type) {

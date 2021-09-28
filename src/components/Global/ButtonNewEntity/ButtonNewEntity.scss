@@ -17,5 +17,19 @@
     margin-right: 50px;
     margin-bottom: 15px;
     float: right;
+    
+  }
+
+  &__item {
+    cursor: pointer;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    position: relative;
+    text-decoration: none;
+    color: white;
+   
   }
 }

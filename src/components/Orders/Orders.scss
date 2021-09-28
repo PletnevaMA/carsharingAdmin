@@ -24,7 +24,10 @@
     border-radius: 9px;
     margin-top: 40px;
   }
- 
+ &__options{
+   border-bottom: 1px solid $gray;
+   display: flex;
+ }
   &__line {
     padding: 0 22px 14px 22px;
     font-size: 12px;
@@ -34,18 +37,9 @@
   
 }
 
-@media (max-width: 768px) {
-  .orders {
-    width: 100vw;
-    height: 100vh;
-    &__container {
-    }
-    &__title {
-      padding-left: 0;
-    }
-    &__main {
-      font-size: 15px;
-    }
+@media (max-width: $mobile) {
+  .orders__title{
+    font-size: 29px;
   }
 }
 

@@ -1,0 +1,129 @@
+@import "../../../variable.scss";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    
+    vertical-align: baseline;
+}
+:focus {
+    outline: 0;
+}
+body {
+    line-height: 1;
+    color: black;
+    background: white;
+}
+ol, ul {
+    list-style: none;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.car-setting {
+  display: flex;
+  flex: auto;
+  &__block {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: $shadow;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 20px 20px;
+    min-height: 80%;
+    margin-left: 40px;
+  }
+  &__title {
+    color: $textColor;
+    margin-bottom: 40px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  &__setting {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 200px;
+    margin-left: 40px;
+    &-container {
+      margin-left: 20px;
+      display: flex;   
+    }
+    &__add {
+      display: none;
+      background-color: transparent;
+      display: block;
+      height: 26px;
+      width: 26px;
+      border-radius: 4px;
+      border: 1px solid $inputColor !important;
+      position: relative;
+      &::after,
+      &::before {
+        transition: 0.2s all ease-in-out;
+        content: "";
+        position: absolute;
+        background-color: $inputColor;
+      }
+      &::after {
+        bottom: 20%;
+        right: 45%;
+        width: 2px;
+        height: 14px;
+      }
+      &::before {
+        bottom: 45%;
+        right: 20%;
+        width: 14px;
+        height: 2px;
+      }     
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .car-setting {
+    display: block;
+    &__container {
+      display: block;
+      margin-left: 0;
+    }
+    &__setting{
+      margin-bottom: 0;
+      margin-top: 20px;
+    }
+    &__title{
+      margin-bottom: 10px;
+    }
+    &__buttons{
+      display: block;
+      margin-bottom: 80px;
+      &-container {
+        margin-left: 0;
+      }
+    }
+  }
+}

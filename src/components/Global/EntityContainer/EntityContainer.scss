@@ -1,0 +1,10 @@
+
+
+.entity-container{
+    padding: 100px 0 0 0;
+    
+    @media (min-width: 1400px) {
+      padding: 100px 32px 100px 317px;
+    }
+    
+}

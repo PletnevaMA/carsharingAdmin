@@ -1,0 +1,22 @@
+.input {
+  display:flex;
+  flex-direction: column;
+  width: 45%;
+   &__global {
+    position: relative;
+    padding: 7px 14px;
+    width: 110px;
+    border-radius: 5px;
+    border: 1px solid #becad6;
+    font-size: 12px;
+    width: 80%;  
+  }
+  &__label {
+    padding-left: 8px;
+    font-size: 11px;
+    color: black;
+    margin-bottom: 5px;
+    position: relative;
+    display: block;
+  }
+}

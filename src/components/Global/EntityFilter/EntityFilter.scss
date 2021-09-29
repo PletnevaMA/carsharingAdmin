@@ -1,0 +1,31 @@
+@import '../../../variable.scss';
+
+.filter{
+   
+    &__list {
+        position: relative;
+        display: flex;
+        padding: 7px 14px;
+        width: 110px;
+        border-radius: 5px;
+        border: 1px solid #becad6;
+        font-size: 12px;
+        margin-bottom: 12px;
+        color: #999;
+        margin-top: 15px;
+        margin-left: 50px;
+    }
+    &__empty{
+        position: relative;
+        display: flex;
+        padding: 7px 14px;
+        width: 110px;
+        border-radius: 5px;
+        border: none;
+        font-size: 12px;
+        margin-bottom: 12px;
+        color: #999;
+        margin-top: 15px;
+        margin-left: 50px;
+    }
+}

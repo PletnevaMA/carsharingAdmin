@@ -9,13 +9,13 @@
     border: 1px solid $gray;
     border-radius: 5px;
     padding-inline-start: 0px;
+    align-items: center;
   }
   &__item {
     cursor: pointer;
     width: 70px;
     display: flex;
     justify-content: center;
-    align-items: center;
     font-size: 11px;
     position: relative;
    

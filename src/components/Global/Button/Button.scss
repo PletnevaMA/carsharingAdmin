@@ -1,0 +1,31 @@
+@import "../../../variable.scss";
+
+.button {
+  font-family: $font;
+  display: flex;
+  line-height: 30px;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+  color: #fff;
+  border-radius: 5px;
+  padding: 0 20px 3px 20px;
+  font-size: 11px;
+  cursor: pointer;
+  height: 30px;
+  width: 95px;
+  transition: 0.2s all ease-in-out;
+  text-decoration: none;
+  min-width: 96px;
+  margin: 10px 10px 10px 10px;
+  &__blue {
+      background-color: $buttonColor;
+  }
+  &__red{
+      background-color: $buttonColorRed;
+  }
+  &__gray{
+    background-color: $buttonColorGray;
+    color: white;
+}
+}

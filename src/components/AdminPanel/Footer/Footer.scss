@@ -9,6 +9,7 @@
   z-index: 5;
   width: 100%;
   padding: 0 0 0 285px;
+  height: 50px;
   &__container {
     display: flex;
     flex-direction: row;
@@ -19,7 +20,9 @@
     display: flex;
     flex-direction: row;
     justify-content:flex-start;
-    width: 65%;
+    width: 60%;
+    padding-top: 20px;
+    padding-left: 20px;
   }
   &__item {
     list-style-type: none;
@@ -48,7 +51,9 @@
       height: 100%;
       display: flex;
     }
-  
+    &__list{
+      padding-left: 10px;
+    }  
   }
 }
 

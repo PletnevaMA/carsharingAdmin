@@ -1,0 +1,31 @@
+@import "../../../variable.scss";
+@import "../../../mixins.scss";
+
+.entity__line {
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border-bottom: 1px solid $ligth-gray;
+    padding-left: 0;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font: $font;
+    padding-top: 15px;
+    padding-bottom: 30px;
+  }
+  &__items {
+    display: flex;
+    justify-content: space-between;
+   
+  }
+}
+
+
+@media (max-width: $mobile) {
+  @include line();
+}

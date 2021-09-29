@@ -1,0 +1,13 @@
+@import '../../variable.scss';
+
+.car__container{
+  display: flex;
+  margin-right: 200px;
+}
+
+@media (max-width: $mobile) {
+  .car__container{
+    display: block;
+    margin-right: 0;
+  }
+}

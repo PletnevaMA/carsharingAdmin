@@ -22,20 +22,18 @@ const Selection = () => {
   ];
 
   return (
-    <div className = "selections">
-       <ul className="selections__list">
-      {filters.map((filter) => (
-        <li className="selections__item">
-          <span>{filter.title}</span>
-        </li>
-      ))}     
-    </ul>
-    <div className = "selections__button__container">
-      <button className="selections__button">Применить</button>
+    <div className="selections">
+      <ul className="selections__list">
+        {filters.map((filter) => (
+          <li key = {filter.name} className="selections__item">
+            <span>{filter.title}</span>
+          </li>
+        ))}
+      </ul>
+      <div className="selections__button__container">
+        <button className="selections__button">Применить</button>
+      </div>
     </div>
-    
-    </div>
-   
   );
 };
 

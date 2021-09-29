@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import shape from "../../../icons/Shape.svg";
 import notification from "../../../icons/Notifications.svg";
 import avatar from "../../../icons/Avatar.png";

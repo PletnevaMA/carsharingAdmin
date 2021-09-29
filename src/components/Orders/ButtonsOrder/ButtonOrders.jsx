@@ -8,22 +8,22 @@ const ButtonOrders = () => {
   const buttons = [
     {
       text: "Готов",
-      image:  ready ,
+      image: ready,
     },
     {
       text: "Отмена",
-      image:  cancel ,
+      image: cancel,
     },
     {
       text: "Изменить",
-      image:  edit ,
+      image: edit,
     },
   ];
   return (
     <section className="buttons">
       <ul className="buttons__list">
         {buttons.map((button) => (
-          <li className="buttons__item">
+          <li key = {button.text} className="buttons__item">
             <img src={button.image} alt="" />
             <span className="buttons__text ">{button.text}</span>
           </li>
